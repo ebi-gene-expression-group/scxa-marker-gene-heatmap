@@ -5,7 +5,7 @@ const commonPublicPath = `/dist/`
 
 module.exports = {
   entry: {
-    markerGeneHeatmapDemo: [`./html/render.js`],
+    markerGeneHeatmapDemo: [`babel-polyfill`, `./html/Demo.js`],
   },
 
   plugins: [
@@ -14,9 +14,8 @@ module.exports = {
 
   output: {
     library: `[name]`,
-    path: path.resolve(__dirname, `dist`),
     filename: `[name].bundle.js`,
-    publicPath: `/html/`
+    publicPath: commonPublicPath
   },
 
   optimization: {
@@ -44,6 +43,21 @@ module.exports = {
         test: /\.js$/i,
         exclude: /node_modules\//,
         use: `babel-loader`
+      },
+      {
+        test: /\.svg$/i,
+        use: [
+          {
+            loader: `file-loader`,
+            options: {
+              query: {
+                name: `[hash].[ext]`,
+                hash: `sha512`,
+                digest: `hex`
+              }
+            }
+          }
+        ]
       }
     ]
   },
