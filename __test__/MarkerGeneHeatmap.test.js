@@ -15,21 +15,21 @@ describe(`MarkerGeneHeatmap`, () => {
         {
           x: 0,
           y: 0,
-          name: `foo`,
+          geneName: `foo`,
           value: 13,
           clusterIdWhereMarker: 1
         },
         {
           x: 1,
           y: 1,
-          name: `bar`,
+          geneName: `bar`,
           value: 2,
           clusterIdWhereMarker: 2
         },
         {
           x: 2,
           y: 2,
-          name: `foobar`,
+          geneName: `foobar`,
           value: 1,
           clusterIdWhereMarker: 3
         }
@@ -52,7 +52,7 @@ describe(`MarkerGeneHeatmap`, () => {
         {
           x: 0,
           y: 0,
-          name: `foo`,
+          geneName: `foo`,
           value: 13,
           clusterIdWhereMarker: 1
         }
@@ -67,5 +67,40 @@ describe(`MarkerGeneHeatmap`, () => {
     const chartOptions = wrapper.find(`t`).props().options
 
     expect(chartOptions.yAxis[0].plotLines).toHaveLength(0)
+  })
+
+  test(`does have data export options`, () => {
+    const wrapper = shallow(<MarkerGeneHeatmap
+      data={[
+        {
+          x: 0,
+          y: 0,
+          geneName: `foo`,
+          value: 13,
+          clusterIdWhereMarker: 1
+        }
+      ]}
+      xAxisCategories={[`1`, `2`, `3`]}
+      yAxisCategories={[`a`, `b`, `c`]}
+      chartHeight={200}
+      isDataFiltered={true}
+      heatmapRowHeight={20}
+      hasDynamicHeight={false} />)
+
+    const chartOptions = wrapper.find(`t`).props().options
+
+    expect(chartOptions.exporting.buttons.contextButton.menuItems).toEqual(
+      [
+        'printChart',
+        'separator',
+        'downloadPNG',
+        'downloadJPEG',
+        'downloadPDF',
+        'downloadSVG',
+        'separator',
+        'downloadCSV',
+        'downloadXLS'
+      ]
+    )
   })
 })

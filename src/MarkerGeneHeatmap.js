@@ -6,6 +6,8 @@ import HighchartsReact from 'highcharts-react-official'
 import HighchartsHeatmap from 'highcharts/modules/heatmap'
 import HighchartsNoData from 'highcharts/modules/no-data-to-display'
 import HighchartsExporting from 'highcharts/modules/exporting'
+import HighchartsExportData from 'highcharts/modules/export-data'
+import HighchartsGetHeatmapData from './highchartsHeatmapTableDataModule'
 
 import _ from 'lodash'
 
@@ -14,6 +16,8 @@ async function addModules() {
   HighchartsHeatmap(Highcharts)
   HighchartsNoData(Highcharts)
   HighchartsExporting(Highcharts)
+  HighchartsExportData(Highcharts)
+  HighchartsGetHeatmapData(Highcharts)
 }
 
 addModules()
@@ -21,12 +25,10 @@ addModules()
 const MarkerGeneHeatmap = (props) => {
   const { chartHeight, hasDynamicHeight, heatmapRowHeight } = props
   const { data, isDataFiltered, xAxisCategories, yAxisCategories } = props
-
-  const totalNumberOfRows = Object.keys(_.groupBy(data, `name`)).length
+  const totalNumberOfRows = Object.keys(_.groupBy(data, `geneName`)).length
   const groupedData = _.groupBy(data, `clusterIdWhereMarker`)
 
   const plotLines = []
-
   const clusterIds = Object.keys(groupedData)
 
   // 175px = title + legend + X axis labels; 8 is the height of a plot line separating the clusters
@@ -160,13 +162,13 @@ const MarkerGeneHeatmap = (props) => {
       formatter: function () {
         if(this.point.value === null) {
           return `<b>Cluster ID:</b> ${this.point.x+1} <br/>
-                <b>Gene ID:</b> ${this.point.name} <br/>
+                <b>Gene ID:</b> ${this.point.geneName} <br/>
                 <b>Median expression:</b> Not expressed <br/>`
         }
         else {
           const text = `<b>Cluster ID:</b> ${this.point.x+1} <br/> 
                   <b>Cluster ID where marker:</b> ${this.point.clusterIdWhereMarker} <br/>
-                  <b>Gene ID:</b> ${this.point.name} <br/>
+                  <b>Gene ID:</b> ${this.point.geneName} <br/>
                   <b>Median expression:</b> ${+this.point.value.toFixed(3)} TPM`
 
           if(this.point.clusterIdWhereMarker === this.point.x+1) {
@@ -220,6 +222,24 @@ const MarkerGeneHeatmap = (props) => {
 
     boost: {
       useGPUTranslations: true
+    },
+
+    exporting: {
+      buttons: {
+        contextButton: {
+          menuItems: [
+            'printChart',
+            'separator',
+            'downloadPNG',
+            'downloadJPEG',
+            'downloadPDF',
+            'downloadSVG',
+            'separator',
+            'downloadCSV',
+            'downloadXLS'
+          ]
+        }
+      }
     }
   }
 
@@ -238,7 +258,7 @@ MarkerGeneHeatmap.propTypes = {
   data: PropTypes.arrayOf(PropTypes.shape({
     x: PropTypes.number.isRequired,
     y: PropTypes.number.isRequired,
-    name: PropTypes.string.isRequired,
+    geneName: PropTypes.string.isRequired,
     value: PropTypes.number.isRequired,
     clusterIdWhereMarker: PropTypes.number.isRequired,
     pValue: PropTypes.number
