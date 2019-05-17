@@ -8,6 +8,7 @@ import HighchartsNoData from 'highcharts/modules/no-data-to-display'
 import HighchartsExporting from 'highcharts/modules/exporting'
 import HighchartsExportData from 'highcharts/modules/export-data'
 import HighchartsGetHeatmapData from './highchartsHeatmapTableDataModule'
+import HighchartsExportStyle from './highchartsExportStyle'
 
 import _ from 'lodash'
 
@@ -18,6 +19,7 @@ async function addModules() {
   HighchartsExporting(Highcharts)
   HighchartsExportData(Highcharts)
   HighchartsGetHeatmapData(Highcharts)
+  HighchartsExportStyle(Highcharts)
 }
 
 addModules()
@@ -224,19 +226,34 @@ const MarkerGeneHeatmap = (props) => {
       useGPUTranslations: true
     },
 
+    navigation: {
+      buttonOptions: {
+        theme: {
+          style: {
+            fontSize: `18px`
+          }
+        }
+      },
+      menuItemStyle: {
+        fontSize: '15px'
+      }
+    },
+
     exporting: {
       buttons: {
         contextButton: {
+          text: '<i class="icon icon-functional" data-icon="="></i> Download &nbsp;',
+          symbol: null,
           menuItems: [
-            'printChart',
-            'separator',
-            'downloadPNG',
-            'downloadJPEG',
-            'downloadPDF',
-            'downloadSVG',
-            'separator',
-            'downloadCSV',
-            'downloadXLS'
+            `printChart`,
+            `separator`,
+            `downloadPNG`,
+            `downloadJPEG`,
+            `downloadPDF`,
+            `downloadSVG`,
+            `separator`,
+            `downloadCSV`,
+            `downloadXLS`
           ]
         }
       }
