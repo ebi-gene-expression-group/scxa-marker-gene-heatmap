@@ -230,7 +230,7 @@ const MarkerGeneHeatmap = (props) => {
       buttonOptions: {
         theme: {
           style: {
-            fontSize: `18px`
+            fontSize: `15px`
           }
         }
       },
