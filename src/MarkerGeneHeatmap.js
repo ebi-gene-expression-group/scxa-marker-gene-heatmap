@@ -242,7 +242,7 @@ const MarkerGeneHeatmap = (props) => {
     exporting: {
       buttons: {
         contextButton: {
-          text: '<i class="icon icon-functional" data-icon="="></i> Download &nbsp;',
+          text: '<i class="icon icon-functional" data-icon="="></i>Download&nbsp;',
           symbol: null,
           menuItems: [
             `printChart`,
