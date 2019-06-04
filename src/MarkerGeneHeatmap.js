@@ -231,18 +231,26 @@ const MarkerGeneHeatmap = (props) => {
         theme: {
           style: {
             fontSize: `15px`
+          },
+          states: {
+            select: {
+              style: {
+                fontWeight: `normal`,
+                color: `black`
+              }
+            }
           }
         }
       },
       menuItemStyle: {
-        fontSize: '15px'
+        fontSize: `15px`
       }
     },
 
     exporting: {
       buttons: {
         contextButton: {
-          text: '<i class="icon icon-functional" data-icon="="></i>Download&nbsp;',
+          text: `<i class="icon icon-functional" data-icon="="></i>&nbsp;Download`,
           symbol: null,
           menuItems: [
             `printChart`,
