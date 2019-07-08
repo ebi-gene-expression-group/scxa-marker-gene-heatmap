@@ -54,12 +54,12 @@ const MarkerGeneHeatmap = (props) => {
     let plotLineAxisPosition = -0.5
 
     // If we don't have a set row height, we try to estimate the height as worked out by Highcharts
-    let rowHeight = hasDynamicHeight ?
+    const rowHeight = hasDynamicHeight ?
       heatmapRowHeight :
       Math.round((chartHeight - 175) / totalNumberOfRows + ((clusterIds.length-1) * 8))
 
     clusterIds.forEach((clusterId, idx, array) => {
-      let numberOfRows = Object.keys(_.groupBy(groupedData[clusterId], `y`)).length // how many marker genes per cluster
+      const numberOfRows = Object.keys(_.groupBy(groupedData[clusterId], `y`)).length // how many marker genes per cluster
 
       plotLineAxisPosition = plotLineAxisPosition + numberOfRows
 
