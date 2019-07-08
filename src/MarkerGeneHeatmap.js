@@ -153,7 +153,7 @@ const MarkerGeneHeatmap = (props) => {
       visible: data.length !== 0
     },
 
-    yAxis: [{
+    yAxis: {
       categories: yAxisCategories,
       title: {
         text: `Gene ID`,
@@ -170,7 +170,6 @@ const MarkerGeneHeatmap = (props) => {
       showEmpty: false,
       visible: data.length !== 0
     },
-    ],
 
     tooltip: {
       // followPointer: true,
