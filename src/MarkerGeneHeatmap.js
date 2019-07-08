@@ -198,7 +198,7 @@ const MarkerGeneHeatmap = (props) => {
     colorAxis: {
       type: `logarithmic`,
       min: 0.1,
-      max: 100000,
+      max: 1000000,
       stops: [
         [0, `#ffffff`],
         [0.67, `#6077bf`],
