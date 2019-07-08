@@ -176,15 +176,15 @@ const MarkerGeneHeatmap = (props) => {
       // followPointer: true,
       formatter: function () {
         if(this.point.value === null) {
-          return `<b>Cluster ID:</b> ${this.point.x+1} <br/>
-                <b>Gene ID:</b> ${this.point.geneName} <br/>
-                <b>Median expression:</b> Not expressed <br/>`
+          return `<b>Cluster ID:</b> ${this.point.x+1}<br/>` +
+                 `<b>Gene ID:</b> ${this.point.geneName}<br/>` +
+                 `<b>Median expression:</b> Not expressed<br/>`
         }
         else {
-          const text = `<b>Cluster ID:</b> ${this.point.x+1} <br/> 
-                  <b>Cluster ID where marker:</b> ${this.point.clusterIdWhereMarker} <br/>
-                  <b>Gene ID:</b> ${this.point.geneName} <br/>
-                  <b>Median expression:</b> ${+this.point.value.toFixed(3)} CPM`
+          const text = `<b>Cluster ID:</b> ${this.point.x+1}<br/>` +
+                       `<b>Cluster ID where marker:</b> ${this.point.clusterIdWhereMarker}<br/>` +
+                       `<b>Gene ID:</b> ${this.point.geneName}<br/>` +
+                       `<b>Median expression:</b> ${+this.point.value.toFixed(3)} CPM`
 
           if(this.point.clusterIdWhereMarker === this.point.x+1) {
             return text + `<br/><b>P-value:</b> ${this.point.pValue.toExponential(3)}`
