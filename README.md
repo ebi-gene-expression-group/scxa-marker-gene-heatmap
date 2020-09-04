@@ -1,5 +1,6 @@
+# This component has been permanently moved to the [Atlas Components monorepo](https://github.com/ebi-gene-expression-group/atlas-components)
+
 # Single Cell Expression Atlas marker gene heatmap
-[![Build Status](https://travis-ci.com/ebi-gene-expression-group/scxa-marker-gene-heatmap.svg?branch=master)](https://travis-ci.com/ebi-gene-expression-group/scxa-marker-gene-heatmap) [![Coverage Status](https://coveralls.io/repos/github/ebi-gene-expression-group/scxa-marker-gene-heatmap/badge.svg?branch=master)](https://coveralls.io/github/ebi-gene-expression-group/scxa-marker-gene-heatmap?branch=master)
 
 ## Installing dependencies
 In order to run the application, you must first install the dependencies using `npm`:
